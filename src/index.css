@@ -34,3 +34,11 @@ code {
 .title {
   font-size: 30px;
 }
+
+/* formSignup */
+.formSignup {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+}
