@@ -39,6 +39,39 @@ code {
 .formSignup {
   display: flex;
   flex-direction: column;
+  align-items: center;
+
   max-width: 500px;
   margin: 0 auto;
+}
+
+.formSignup label:not(:last-child) {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 265px;
+}
+
+.formSignup label input {
+  margin-left: 20px;
+}
+
+.submit {
+  align-self: center;
+}
+
+/* formSignin */
+
+.formSignin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formSignin label {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  margin-bottom: 20px;
 }
