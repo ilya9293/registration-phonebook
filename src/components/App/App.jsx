@@ -15,7 +15,7 @@ import {
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Header';
 import HomePage from '../../pages/HomePage';
-import Registration from '../../pages/Ragistration';
+import Registration from '../../pages/Registration';
 import Authorization from '../../pages/Authorization';
 import Contacts from '../../pages/Contacts';
 

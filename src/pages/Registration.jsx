@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { signUp } from '../redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
 
 function Ragistration(props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     switch (e.target.name) {
@@ -23,19 +26,16 @@ function Ragistration(props) {
     }
   };
 
+  const reset = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+  };
+
   const pushSubmit = e => {
-    //  e.preventDefault();
-    //  const URL = 'https://connections-api.herokuapp.com';
-    //  const options = {
-    //    method: 'POST',
-    //    body: JSON.stringify({ name, email, password }),
-    //    headers: {
-    //      'Content-Type': 'application/json; charset=UTF-8',
-    //    },
-    //  };
-    //  const res = await fetch(`${URL}/users/signup`, options);
-    //  //  return res.ok ? res.json() : Promise.reject(new Error(res.statusText));
-    //  res.json().then(data => console.log(data));
+    e.preventDefault();
+    dispatch(signUp({ name, email, password }));
+    reset();
   };
 
   return (
