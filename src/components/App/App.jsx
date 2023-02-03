@@ -12,12 +12,14 @@ import {
   //   getFilteredContacts,
   getMemoizedFilteredContacts,
 } from '../../redux/contacts/contactsSelectors';
+import { getUser } from '../../redux/auth/authOperations';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Header';
 import HomePage from '../../pages/HomePage';
 import Registration from '../../pages/Registration';
 import Authorization from '../../pages/Authorization';
 import Contacts from '../../pages/Contacts';
+import { getLoadingUser } from '../../redux/auth/authSelectors';
 
 // const CONTACTSLOCALE = 'contacts';
 
@@ -36,6 +38,14 @@ const App = () => {
   //     items.filter(contact => {
   //       return contact.name.toLowerCase().includes(filter.toLowerCase());
   //     });
+  const dispatch = useDispatch();
+  const isLoadingUser = useSelector(getLoadingUser);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  if (isLoadingUser) return;
 
   return (
     <>

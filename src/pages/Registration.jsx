@@ -1,14 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signUp } from '../redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getError } from '../redux/auth/authSelectors';
+import { errorReset } from '../redux/auth/authSlice';
 
 function Ragistration(props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const error = useSelector(getError);
+
+  useEffect(() => {
+    if (!error) return;
+    alert(error);
+    dispatch(errorReset());
+  }, [dispatch, error]);
 
   const handleChange = e => {
     switch (e.target.name) {

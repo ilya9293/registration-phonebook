@@ -10,6 +10,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+/* .main-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+} */
+
 .header {
   list-style: none;
   display: flex;
@@ -74,4 +80,9 @@ code {
   justify-content: space-between;
   width: 250px;
   margin-bottom: 20px;
+}
+
+/* userMenu */
+.userMenu {
+  display: inline;
 }
