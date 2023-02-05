@@ -4,7 +4,7 @@ import { getUserName } from '../../redux/auth/authSelectors';
 
 function UserMenu(props) {
   const userName = useSelector(getUserName);
-  return <p className="userMenu">{userName}</p>;
+  return <p className="userMenu">{userName ?? 'User'}</p>;
 }
 
 UserMenu.propTypes = {};

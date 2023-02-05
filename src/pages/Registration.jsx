@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { signUp } from '../redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
-import { getError } from '../redux/auth/authSelectors';
+import { getError, getLoading } from '../redux/auth/authSelectors';
 import { errorReset } from '../redux/auth/authSlice';
 
 function Ragistration(props) {
@@ -12,7 +12,7 @@ function Ragistration(props) {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const error = useSelector(getError);
-
+  const loading = useSelector(getLoading);
   useEffect(() => {
     if (!error) return;
     alert(error);
@@ -47,6 +47,8 @@ function Ragistration(props) {
     reset();
   };
 
+  const isDisabled = !name || !email || !password || loading;
+
   return (
     <form className="formSignup" onSubmit={pushSubmit}>
       <label>
@@ -61,7 +63,7 @@ function Ragistration(props) {
         Password
         <input type="password" name="password" required value={password} onChange={handleChange} />
       </label>
-      <button type="submit" className="submit">
+      <button type="submit" className="submit" disabled={isDisabled}>
         Add contact
       </button>
     </form>

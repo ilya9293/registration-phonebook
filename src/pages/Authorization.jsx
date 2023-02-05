@@ -1,14 +1,38 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from '../redux/auth/authOperations';
+import { getError, getLoading } from '../redux/auth/authSelectors';
+import { errorReset } from '../redux/auth/authSlice';
 
 function Authorization(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const error = useSelector(getError);
+  const loading = useSelector(getLoading);
+
+  useEffect(() => {
+    if (!error) return;
+    alert(error);
+    dispatch(errorReset());
+  }, [dispatch, error]);
+
+  const pushSubmit = e => {
+    e.preventDefault();
+    dispatch(signIn({ email, password }));
+    reset();
+  };
+
+  const reset = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const isDisabled = !email || !password || loading;
 
   return (
-    <form className="formSignin">
-      {/* //  onSubmit={pushSubmit}> */}
+    <form className="formSignin" onSubmit={pushSubmit}>
       <label>
         E-mail
         <input
@@ -29,8 +53,8 @@ function Authorization(props) {
           onChange={e => setPassword(e.target.value)}
         />
       </label>
-      <button type="submit" className="submit">
-        Add contact
+      <button type="submit" className="submit" disabled={isDisabled}>
+        Login
       </button>
     </form>
   );

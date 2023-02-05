@@ -37,6 +37,38 @@ const authSlice = createSlice({
         error: payload,
       }))
 
+      .addCase(signIn.pending, state => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
+      .addCase(signIn.fulfilled, (state, { payload }) => ({
+        ...state,
+        user: {
+          name: payload.user.name,
+          email: payload.user.email,
+        },
+        token: payload.token,
+        loading: false,
+      }))
+      .addCase(signIn.rejected, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: payload,
+      }))
+
+      .addCase(signOut.pending, state => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
+      .addCase(signOut.fulfilled, (state, { payload }) => initialState)
+      .addCase(signOut.rejected, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: payload,
+      }))
+
       .addCase(getUser.pending, state => ({
         ...state,
         loadingUser: true,
