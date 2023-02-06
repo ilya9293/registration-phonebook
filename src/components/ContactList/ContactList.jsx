@@ -12,10 +12,10 @@ function ContactList({ handleFilter }) {
   return (
     <>
       <ul className={s.list}>
-        {handleFilter.map(({ id, name, phone }) => {
+        {handleFilter.map(({ id, name, number }) => {
           return (
             <li key={id} className={s.listItem}>
-              <ContactListItem name={name} number={phone} />
+              <ContactListItem name={name} number={number} />
               <Button id={id} />
             </li>
           );

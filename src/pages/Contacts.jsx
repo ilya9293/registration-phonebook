@@ -4,16 +4,20 @@ import ContactForm from '../components/ContactForm';
 import Filter from '../components/Filter';
 import ContactList from '../components/ContactList';
 import { getContacts } from '../redux/contacts/contactsOperations';
-import { getMemoizedFilteredContacts } from '../redux/contacts/contactsSelectors';
+import { getMemoizedFilteredContacts, getError } from '../redux/contacts/contactsSelectors';
 import PropTypes from 'prop-types';
 
 function Contacts(props) {
   const filteredContacts = useSelector(getMemoizedFilteredContacts);
+  const error = useSelector(getError);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (error) {
+      alert(error);
+    }
     dispatch(getContacts());
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   return (
     <>
