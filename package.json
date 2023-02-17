@@ -1,6 +1,6 @@
 {
-  "name": "react-2-phonebook",
-  "homepage": "https://ilya9293.github.io/redux-phonebook",
+  "name": "registration-phonebook",
+  "homepage": "https://ilya9293.github.io/registration-phonebook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
