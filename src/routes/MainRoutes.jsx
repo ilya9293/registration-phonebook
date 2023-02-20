@@ -26,8 +26,14 @@ const MainRoutes = () => {
           element={isLoggedIn ? <Contacts /> : <Navigate replace to="/login" />}
         />
         {/* Unauthorized */}
-        <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<Authorization />} />
+        <Route
+          path="/register"
+          element={!isLoggedIn ? <Registration /> : <Navigate replace to="/contacts" />}
+        />
+        <Route
+          path="/login"
+          element={!isLoggedIn ? <Authorization /> : <Navigate replace to="/contacts" />}
+        />
       </Routes>
     </Suspense>
   );
